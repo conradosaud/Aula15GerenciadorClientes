@@ -17,9 +17,33 @@ namespace Aula15GerenciadorUsuarios
             InitializeComponent();
         }
 
+        void atualizaInterface()
+        {
+            listView1.Clear();
+            for (int i = 0; i < Program.clientes.Count; i++)
+            {
+                listView1.Items.Add( Program.clientes[i].nome );
+            }
+        }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            string usuarioCadastro = txtUsuario.Text;   
+            string senha = txtSenha.Text;
+            string nome = txtNomeCompleto.Text;
+            int idade = 2023 - int.Parse(txtNascimento.Text);
+
+            Usuario usuario = new Usuario(usuarioCadastro, senha );
+            Cliente cliente = new Cliente( nome , idade, usuario);
+            Program.clientes.Add(cliente);
+
+            atualizaInterface();
+
+        }
+
         private void Form2_Load(object sender, EventArgs e)
         {
-            
+            atualizaInterface();
         }
     }
 }

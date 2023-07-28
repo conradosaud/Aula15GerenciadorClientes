@@ -2,6 +2,7 @@ namespace Aula15GerenciadorUsuarios
 {
     public partial class Form1 : Form
     {
+
         public Form1()
         {
             InitializeComponent();
@@ -11,6 +12,8 @@ namespace Aula15GerenciadorUsuarios
         {
             string usuario = txtUsuario.Text;
             string senha = txtSenha.Text;
+
+            bool encontrado = false;
 
             for (int i = 0; i < Program.clientes.Count; i++)
             {
@@ -22,17 +25,20 @@ namespace Aula15GerenciadorUsuarios
                 {
                     Form2 form2 = new Form2();
                     form2.Show();
+                    encontrado = true;
                 }
-                else
-                {
-                    MessageBox.Show("Usuário ou senha incorretos");
-                }
+            }
+
+            if ( encontrado == false )
+            {
+                MessageBox.Show("Usuário ou senha incorretos");
             }
 
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            MessageBox.Show("tste");
             Usuario usuario = new Usuario("admin", "admin");
             Cliente cliente = new Cliente("Admin", 0, usuario);
             Program.clientes.Add(cliente);
